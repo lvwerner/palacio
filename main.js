@@ -127,7 +127,7 @@
 
   /* ---------------------------------------------------------------- Reveal e barra fixa */
   function ligarObservadores() {
-    var itens = $$(".revelar");
+    var itens = $$("[data-revelar]");
     if (!("IntersectionObserver" in window)) {
       itens.forEach(function (el) { el.classList.add("visivel"); });
       return;
@@ -321,53 +321,146 @@
     });
   }
 
-  /* ---------------------------------------------------------------- Lightbox */
-  function ligarLightbox() {
-    var dialogo = $("#lightbox");
-    var itens = $$(".galeria__item");
-    if (!dialogo || !itens.length || typeof dialogo.showModal !== "function") return;
+  /* ---------------------------------------------------------------- Galeria
+     Uma moldura, o conteúdo troca sozinho. Tocar passa para a próxima imagem. */
+  function ligarGaleria() {
+    var moldura = $("[data-galeria]");
+    if (!moldura) return;
+    var imagens = $$("img", moldura);
+    var legenda = $("[data-galeria-legenda]");
+    if (imagens.length < 2) return;
 
-    var midia = $(".lightbox__midia", dialogo);
-    var legenda = $(".lightbox__legenda", dialogo);
     var atual = 0;
-    var origem = null;
+    var relogio = null;
+    var naTela = false;
+    var calmo = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     function mostrar(i) {
-      atual = (i + itens.length) % itens.length;
-      var item = itens[atual];
-      var texto = item.getAttribute("data-legenda") || "";
-      midia.innerHTML = "";
-      if (item.getAttribute("data-full")) {
-        var img = document.createElement("img");
-        img.src = item.getAttribute("data-full");
-        img.alt = texto;
-        midia.appendChild(img);
-      } else {
-        var copia = $(".foto", item).cloneNode(true);
-        copia.setAttribute("role", "img");
-        copia.setAttribute("aria-label", "Espaço reservado para foto: " + texto);
-        midia.appendChild(copia);
+      imagens[atual].classList.remove("ativa");
+      atual = (i + imagens.length) % imagens.length;
+      imagens[atual].classList.add("ativa");
+      if (legenda) legenda.textContent = imagens[atual].getAttribute("data-legenda") || "";
+    }
+    function parar() { clearInterval(relogio); relogio = null; }
+    function andar() {
+      parar();
+      if (naTela && !document.hidden && !calmo.matches) {
+        relogio = setInterval(function () { mostrar(atual + 1); }, (cfg.galeriaSegundos || 3.2) * 1000);
       }
-      legenda.textContent = texto + " (" + (atual + 1) + " de " + itens.length + ")";
     }
 
-    itens.forEach(function (item, i) {
-      item.addEventListener("click", function () {
-        origem = item;
-        mostrar(i);
-        dialogo.showModal();
-      });
-    });
+    moldura.addEventListener("click", function () { mostrar(atual + 1); andar(); });
+    document.addEventListener("visibilitychange", andar);
+    if (calmo.addEventListener) calmo.addEventListener("change", andar);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entradas) {
+        naTela = entradas[0].isIntersecting;
+        andar();
+      }, { threshold: 0.3 }).observe(moldura);
+    } else {
+      naTela = true;
+      andar();
+    }
+  }
 
-    $(".lightbox__fechar", dialogo).addEventListener("click", function () { dialogo.close(); });
-    $(".lightbox__nav--ant", dialogo).addEventListener("click", function () { mostrar(atual - 1); });
-    $(".lightbox__nav--prox", dialogo).addEventListener("click", function () { mostrar(atual + 1); });
-    dialogo.addEventListener("click", function (ev) { if (ev.target === dialogo) dialogo.close(); });
-    dialogo.addEventListener("keydown", function (ev) {
-      if (ev.key === "ArrowLeft") mostrar(atual - 1);
-      if (ev.key === "ArrowRight") mostrar(atual + 1);
-    });
-    dialogo.addEventListener("close", function () { if (origem) origem.focus(); });
+  /* ---------------------------------------------------------------- A casa está aberta agora?
+     Conta pelo horário de Brasília, onde quer que a pessoa esteja. */
+  function hora(hhmm) { return hhmm.replace(":00", "h").replace(":", "h"); }
+
+  function agoraEmJoinville() {
+    try {
+      var partes = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "America/Sao_Paulo", weekday: "short", hour: "2-digit", minute: "2-digit", hour12: false
+      }).formatToParts(new Date());
+      var v = {};
+      partes.forEach(function (p) { v[p.type] = p.value; });
+      return {
+        dia: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(v.weekday),
+        minuto: (Number(v.hour) % 24) * 60 + Number(v.minute)
+      };
+    } catch (e) {
+      var d = new Date();
+      return { dia: d.getDay(), minuto: d.getHours() * 60 + d.getMinutes() };
+    }
+  }
+
+  function textoDeAgora(a) {
+    var abertos = cfg.diasAbertos || [1, 2, 3, 4, 5, 6];
+    var abre = cfg.abre || "18:00";
+    var fecha = cfg.fecha || "23:00";
+    var hoje = abertos.indexOf(a.dia) !== -1;
+
+    if (hoje && a.minuto >= minutos(abre) && a.minuto < minutos(fecha)) {
+      return "Aberto agora, até as " + hora(fecha) + ".";
+    }
+    if (hoje && a.minuto < minutos(abre)) {
+      var falta = minutos(abre) - a.minuto;
+      var h = Math.floor(falta / 60), m = falta % 60;
+      return "Abre hoje às " + hora(abre) + ". Faltam " + [h ? h + " h" : "", m ? m + " min" : ""].filter(Boolean).join(" ") + ".";
+    }
+    for (var i = 1; i <= 7; i++) {
+      var dia = (a.dia + i) % 7;
+      if (abertos.indexOf(dia) !== -1) {
+        return "Fechado agora. Abre " + (i === 1 ? "amanhã" : (dia === 6 || dia === 0 ? "no " : "na ") + DIAS[dia]) + ", às " + hora(abre) + ".";
+      }
+    }
+    return "";
+  }
+  // Exposto para testes e para depuração no console.
+  window.palacioTextoDeAgora = textoDeAgora;
+
+  function ligarAgora() {
+    var alvos = $$("[data-agora]");
+    if (!alvos.length) return;
+    function atualizar() {
+      var texto = textoDeAgora(agoraEmJoinville());
+      if (texto) alvos.forEach(function (el) { if (el.textContent !== texto) el.textContent = texto; });
+    }
+    atualizar();
+    setInterval(atualizar, 30000);
+  }
+
+  /* ---------------------------------------------------------------- Bilhete da reserva
+     O canhoto do cupom mostra a mesa que a pessoa está montando no formulário. */
+  function ligarBilhete() {
+    var bilhete = $("[data-bilhete]");
+    var form = $("#form-reserva");
+    if (!bilhete || !form) return;
+    var linhas = {
+      pessoas: $('[data-b="pessoas"]', bilhete),
+      data: $('[data-b="data"]', bilhete),
+      horario: $('[data-b="horario"]', bilhete)
+    };
+    var padrao = {
+      pessoas: linhas.pessoas.textContent, data: linhas.data.textContent, horario: linhas.horario.textContent
+    };
+
+    function escrever(chave, texto) {
+      var el = linhas[chave];
+      if (el.textContent === texto) return;
+      el.textContent = texto;
+      el.classList.remove("mudou");
+      void el.offsetWidth;
+      el.classList.add("mudou");
+    }
+
+    function atualizar() {
+      var n = Number($("#f-pessoas").value);
+      var data = $("#f-data").value;
+      var horario = $("#f-horario").value;
+      escrever("pessoas", Number.isInteger(n) && n >= 1 ? "Mesa para " + n : padrao.pessoas);
+      if (data) {
+        var p = data.split("-").map(Number);
+        var d = new Date(p[0], p[1] - 1, p[2], 12);
+        escrever("data", DIAS[d.getDay()] + ", " + p[2] + " de " + MESES[p[1] - 1]);
+      } else {
+        escrever("data", padrao.data);
+      }
+      escrever("horario", horario ? "às " + hora(horario) : padrao.horario);
+    }
+
+    form.addEventListener("input", atualizar);
+    form.addEventListener("change", atualizar);
   }
 
   /* ---------------------------------------------------------------- Início */
@@ -377,5 +470,7 @@
   ligarMenu();
   ligarObservadores();
   ligarFormulario();
-  ligarLightbox();
+  ligarGaleria();
+  ligarAgora();
+  ligarBilhete();
 })();

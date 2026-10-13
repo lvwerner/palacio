@@ -12,9 +12,9 @@ O formulário de reserva só monta uma mensagem e abre o WhatsApp.
 |---|---|
 | `index.html` | Conteúdo e SEO (title, Open Graph, JSON-LD) |
 | `styles.css` | Visual. As cores ficam no bloco `:root`, no topo |
-| `main.js` | Menu, formulário → WhatsApp, galeria, métricas |
+| `main.js` | Menu, formulário → WhatsApp, aviso de aberto/fechado, galeria, barra fixa do celular, métricas |
 | `config.js` | **O que você mais vai editar**: número, mensagens, horários, links, métricas |
-| `assets/` | Fontes, favicon, `og-image.jpg`, `qr-palacio.svg`, fotos |
+| `assets/` | Fontes, favicon, `og-image.jpg`, `qr-palacio.svg`, logo da casa (`logo-palacio.webp`), fotos ilustrativas (`ilustrativas/`), fotos |
 | `robots.txt`, `sitemap.xml` | Bloqueados na demo, com instruções de go-live comentadas |
 | `CONTEUDO_A_CONFIRMAR.md` | Tudo o que depende do dono |
 | `PROPOSTA.md` | Resumo de 1 página para apresentar |
@@ -40,9 +40,11 @@ Quando o dono confirmar o WhatsApp, mude `whatsappConfirmado` para `true` e o av
 
 **Depoimentos:** há um modelo comentado na seção Depoimentos do `index.html`. Só publique com autorização por escrito.
 
-**Cores:** quando o logo oficial chegar, ajuste `--ouro`, `--ouro-meio`, `--ouro-escuro`, `--noite` e `--grafite` em `styles.css`. Mantenha contraste AA (texto escuro sobre o dourado dos botões).
+**Cores:** quando o logo oficial chegar, ajuste `--ouro`, `--ouro-claro`, `--noite`, `--grafite` e `--marfim` em `styles.css`. Mantenha contraste AA (texto escuro sobre o dourado). A página usa cor chapada, sem degradês, sombras ou fios, e uma forma só: o arco (`--arco`).
 
-**Logo:** hoje é um logo provisório em SVG. Para usar o oficial, troque o conteúdo de `<a class="logo">` (cabeçalho) e de `<div class="logo logo--rodape">` (rodapé) por:
+**Aberto agora:** a linha dourada do topo ("Aberto agora, até as 23h", "Abre hoje às 18h. Faltam…") é calculada pelo horário de Brasília a partir de `abre`, `fecha` e `diasAbertos` em `config.js`.
+
+**Logo:** o rodapé usa o logo real da casa (`assets/logo-palacio.webp`), copiado da página de delivery deles em 240 px: peça o arquivo original em alta resolução. O cabeçalho usa um símbolo provisório em SVG (o arco). Para usar o logo oficial também no cabeçalho, troque o conteúdo de `<a class="logo">` por:
 
 ```html
 <img src="assets/logo.png" width="160" height="48" alt="Palácio Sushi Experience">
@@ -52,23 +54,25 @@ Quando o dono confirmar o WhatsApp, mude `whatsappConfirmado` para `true` e o av
 
 Use apenas fotos próprias ou autorizadas pela casa. Nada de Instagram de terceiros ou banco de imagens sem licença.
 
-1. Exporte cada foto na proporção 4:5 em dois tamanhos (600 e 1200 px de largura), em AVIF, WebP e JPG. Para ampliar na galeria, exporte também uma versão de 1600 px. O [Squoosh](https://squoosh.app) faz isso de graça.
+Hoje a página mostra fotos ilustrativas de sushi, de licença livre (CC BY e CC0, via Wikimedia Commons), guardadas em `assets/ilustrativas/`. Elas ocupam o lugar das fotos da casa, estão identificadas como ilustrativas na página e creditadas no rodapé; as fontes e licenças estão em `assets/ilustrativas/credits.json`. Enquanto estiverem no ar, a linha de créditos do rodapé é obrigatória (a licença CC BY exige).
+
+1. Exporte cada foto em dois tamanhos (800 e 1600 px de largura), em AVIF, WebP e JPG. O [Squoosh](https://squoosh.app) faz isso de graça.
 2. Salve em `assets/fotos/`.
-3. Na galeria, troque o `<span class="foto foto--arco">…</span>` por:
+3. **Porta do topo** (`<figure class="hero__gravura">`): troque o `<img>` por
 
 ```html
-<span class="foto foto--arco">
-  <picture>
-    <source type="image/avif" srcset="assets/fotos/salao-600.avif 600w, assets/fotos/salao-1200.avif 1200w" sizes="(min-width: 600px) 25vw, 50vw">
-    <source type="image/webp" srcset="assets/fotos/salao-600.webp 600w, assets/fotos/salao-1200.webp 1200w" sizes="(min-width: 600px) 25vw, 50vw">
-    <img src="assets/fotos/salao-600.jpg" width="600" height="750" loading="lazy" decoding="async" alt="Salão principal com mesas postas e luz baixa">
-  </picture>
-</span>
+<picture>
+  <source type="image/avif" srcset="assets/fotos/mesa-800.avif 800w, assets/fotos/mesa-1600.avif 1600w" sizes="(min-width: 960px) 50vw, 100vw">
+  <source type="image/webp" srcset="assets/fotos/mesa-800.webp 800w, assets/fotos/mesa-1600.webp 1600w" sizes="(min-width: 960px) 50vw, 100vw">
+  <img src="assets/fotos/mesa-800.jpg" width="1600" height="2000" fetchpriority="high" decoding="async" alt="Mesa servida no salão, com luz baixa">
+</picture>
 ```
 
-4. No `<button class="galeria__item">` correspondente, acrescente `data-full="assets/fotos/salao-1600.jpg"` para a ampliação.
-5. No hero, faça o mesmo dentro de `<div class="hero__foto">`, mas **sem** `loading="lazy"` e com `fetchpriority="high"`, trocando `sizes` por `(min-width: 960px) 400px, 340px`. Remova o `role="img"` e o `aria-label` do bloco.
-6. Troque `assets/og-image.jpg` por uma foto real de 1200 × 630.
+   e apague o parágrafo `.hero__legenda`. O arco corta a foto sozinho; ajuste o enquadramento em `.hero__gravura img { object-position }` no `styles.css`.
+4. **Galeria** (`<button class="moldura moldura--troca">`): cada `<img>` é uma foto da sequência. Troque `src`, `alt` e `data-legenda` (o texto que aparece embaixo), mantendo `loading="lazy"`. A primeira foto leva `class="ativa"`. A moldura é 4:5 e troca sozinha; `galeriaSegundos` em `config.js` muda o tempo de cada foto (padrão 3,2 s).
+5. **Cardápio** (`.cardapio__figura`) e **chamada final** (`.final__arco--gravura`): troque o `src` e o `alt` de cada `<img>` e apague a legenda "Foto ilustrativa".
+6. Apague a linha `.rodape__creditos` do rodapé e a pasta `assets/ilustrativas/` quando não houver mais fotos ilustrativas na página.
+7. Troque `assets/og-image.jpg` por uma foto real de 1200 × 630.
 
 Escreva o `alt` descrevendo o que aparece na foto.
 
@@ -131,7 +135,7 @@ Para a demonstração, o endereço gratuito gerado (`*.pages.dev`, `*.netlify.ap
 - [ ] Dono aprovou textos, fotos e valores.
 - [ ] Nenhum `[CONFIRMAR` restante: busque no `index.html` e no `config.js`.
 - [ ] `whatsapp` confirmado e `whatsappConfirmado: true` em `config.js`.
-- [ ] Logo oficial, fotos reais e `og-image.jpg` real no lugar.
+- [ ] Logo oficial em alta resolução, fotos da casa no lugar das ilustrativas e `og-image.jpg` real.
 - [ ] `SEU-DOMINIO.com.br` trocado em `index.html` (canonical, og:url, og:image, twitter:image, JSON-LD), `config.js`, `sitemap.xml` e `robots.txt`.
 - [ ] **Removida** a linha `<meta name="robots" content="noindex, nofollow">` e o comentário acima dela.
 - [ ] `robots.txt` trocado pelo bloco de go-live.
@@ -146,3 +150,5 @@ Para a demonstração, o endereço gratuito gerado (`*.pages.dev`, `*.netlify.ap
 ## Créditos
 
 Fontes Cormorant Garamond e Manrope, licença SIL Open Font License 1.1, hospedadas em `assets/fonts/`.
+
+Fotos ilustrativas de Yuri Samoilov, Tim Reckmann, Geoff Peters e City Foodsters (CC BY) e de Andy Li (CC0), via Wikimedia Commons. Detalhes em `assets/ilustrativas/credits.json`.

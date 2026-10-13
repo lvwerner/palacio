@@ -65,33 +65,12 @@
 </head>
 <body>
 
-  <!-- Ícones e marca reutilizados na página -->
+  <!-- Marca provisória: os dois arcos da porta. É a única forma da página. -->
   <svg width="0" height="0" class="sprite" aria-hidden="true" focusable="false">
     <defs>
-      <linearGradient id="ouro" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#F2B04A"/>
-        <stop offset="1" stop-color="#B8741A"/>
-      </linearGradient>
-      <symbol id="marca" viewBox="0 0 64 64">
-        <path d="M14 58V32c0-11 8-16 18-24 10 8 18 13 18 24v26" fill="none" stroke="url(#ouro)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M23 58V35c0-6 4-9 9-13 5 4 9 7 9 13v23" fill="none" stroke="url(#ouro)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" opacity=".65"/>
-        <circle cx="32" cy="4" r="1.75" fill="url(#ouro)"/>
-      </symbol>
-      <symbol id="i-chat" viewBox="0 0 24 24">
-        <path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
-        <path d="M8.5 11.5h7M8.5 14.5h4.5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-      </symbol>
-      <symbol id="i-pin" viewBox="0 0 24 24">
-        <path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.500C5 14.900 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
-        <circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.75"/>
-      </symbol>
-      <symbol id="i-foto" viewBox="0 0 24 24">
-        <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
-        <circle cx="9" cy="10" r="1.75" fill="none" stroke="currentColor" stroke-width="1.5"/>
-        <path d="m4 17 5-4 4 3 3-2.500 4 3.500" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-      </symbol>
-      <symbol id="i-seta" viewBox="0 0 24 24">
-        <path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <symbol id="marca" viewBox="0 0 40 48">
+        <path d="M0 48V20a20 20 0 0 1 40 0v28h-7V20a13 13 0 0 0-26 0v28Z"/>
+        <path d="M12 48V21a8 8 0 0 1 16 0v27Z"/>
       </symbol>
     </defs>
   </svg>
@@ -103,25 +82,24 @@
     <div class="topo__dentro">
       <!-- Logo provisório. Trocar por <img src="assets/logo.png" width="…" height="…" alt="Palácio Sushi Experience"> -->
       <a class="logo" href="#inicio" aria-label="Palácio Sushi Experience, início">
-        <svg class="logo__marca" width="34" height="34" aria-hidden="true"><use href="#marca"/></svg>
-        <span class="logo__texto">
-          <span class="logo__nome">Palácio</span>
-          <span class="logo__sub">Sushi Experience</span>
-        </span>
+        <svg class="logo__marca" width="25" height="30" aria-hidden="true"><use href="#marca"/></svg>
+        <span class="logo__nome">Palácio</span>
+        <span class="logo__sub">Sushi Experience</span>
       </a>
 
       <nav class="menu" id="menu" aria-label="Seções da página">
         <ul class="menu__lista">
-          <li><a href="#experiencia">Experiência</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#valores">Valores</a></li>
           <li><a href="#cardapio">Cardápio</a></li>
-          <li><a href="#galeria">Galeria</a></li>
           <li><a href="#reservas">Reservas</a></li>
-          <li><a href="#localizacao">Localização</a></li>
+          <li><a href="#localizacao">Endereço e horários</a></li>
+          <li><a href="#faq">Perguntas</a></li>
         </ul>
       </nav>
 
       <div class="topo__acoes">
-        <a class="botao botao--ouro botao--compacto" href="#reservas" data-track="click_whatsapp" data-local="header">Reservar</a>
+        <a class="botao botao--compacto" href="#reservas" data-track="click_whatsapp" data-local="header">Reservar</a>
         <button class="menu__abrir" type="button" aria-expanded="false" aria-controls="menu">
           <span class="menu__barras" aria-hidden="true"></span>
           <span class="so-leitor">Abrir menu</span>
@@ -134,272 +112,166 @@
 
     <!-- ============================================================ HERO -->
     <section class="hero" id="inicio">
-      <svg class="hero__arcos" viewBox="0 0 800 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
-        <g fill="none" stroke="url(#ouro)" stroke-width="1.25">
-          <path d="M60 900V470c0-190 150-270 340-420 190 150 340 230 340 420v430" opacity=".30"/>
-          <path d="M140 900V490c0-150 120-215 260-330 140 115 260 180 260 330v410" opacity=".22"/>
-          <path d="M220 900V510c0-110 85-160 180-240 95 80 180 130 180 240v390" opacity=".15"/>
-        </g>
-      </svg>
-
-      <div class="hero__dentro">
-        <div class="hero__texto">
-          <p class="sobretitulo">Rodízio japonês · Joinville, SC</p>
-          <h1 class="hero__titulo">Uma noite à altura de um <span class="dourado">palácio</span>. Em Joinville.</h1>
-          <p class="hero__sub">Rodízio de sushi e frutos do mar no bairro Atiradores, em um salão aconchegante, feito para sentar e ficar.</p>
-          <div class="hero__botoes">
-            <a class="botao botao--ouro" href="#reservas" data-track="click_whatsapp" data-local="hero">
-              <svg width="20" height="20" aria-hidden="true"><use href="#i-chat"/></svg>
-              Reservar pelo WhatsApp
-            </a>
-            <a class="botao botao--linha" href="#como-funciona">Ver como funciona</a>
-          </div>
-          <ul class="hero__confianca">
-            <li>Rodízio de sushi e frutos do mar</li>
-            <li>Jantar de segunda a sábado</li>
-            <li>Atiradores, Joinville</li>
-          </ul>
-        </div>
-
-        <!-- FOTO DO HERO: trocar o bloco abaixo por <picture> (modelo no README). -->
-        <div class="hero__foto">
-          <div class="foto foto--arco" role="img" aria-label="Espaço reservado para a foto principal: mesa servida no salão">
-            <svg width="28" height="28" aria-hidden="true"><use href="#i-foto"/></svg>
-            <span class="foto__rotulo">FOTO: mesa servida no salão<br>1200 × 1500</span>
-          </div>
+      <div class="hero__texto">
+        <h1 class="hero__titulo">
+          <span class="linha"><span style="--i:0">O palácio</span></span>
+          <span class="linha"><span style="--i:1">abre às 18h</span></span>
+        </h1>
+        <p class="hero__sub" data-subir style="--i:2">Rodízio de sushi e frutos do mar no Atiradores, em Joinville. Jantar de segunda a sábado, até as 23h.</p>
+        <!-- Texto trocado pelo main.js conforme o horário de Brasília. Sem JavaScript, fica o horário fixo. -->
+        <p class="hero__agora" data-agora data-subir style="--i:3" aria-live="polite">Segunda a sábado, das 18h às 23h.</p>
+        <div class="hero__acoes" data-subir style="--i:4">
+          <a class="botao" href="#reservas" data-track="click_whatsapp" data-local="hero">Reservar pelo WhatsApp</a>
+          <a class="link" href="#como-funciona">Ver como funciona</a>
         </div>
       </div>
+
+      <!--
+        A PORTA: arco dourado com uma foto dentro.
+        Hoje é uma foto ilustrativa, de licença livre. Com a foto real da casa, troque só o <img>
+        (modelo no README) e apague a legenda .hero__legenda.
+      -->
+      <div class="hero__porta">
+        <figure class="hero__gravura obturador">
+          <img src="assets/ilustrativas/combinado-a-noite.jpg" width="1920" height="1280" fetchpriority="high" decoding="async"
+               alt="Combinado de sushis variados servido em um prato escuro, à noite, com luzes desfocadas ao fundo">
+        </figure>
+      </div>
+      <p class="hero__legenda">Foto ilustrativa.</p>
     </section>
 
-    <!-- ============================================================ PROVA RÁPIDA -->
-    <section class="prova" aria-label="Resumo da casa">
-      <!-- Números editáveis em config.js (bloco "prova"). data-coletado-em = data da coleta. -->
-      <ul class="prova__lista">
-        <li class="prova__item" data-coletado-em="2026-10-12" data-fonte="Google Maps">
-          <span class="prova__numero"><span data-cfg="notaGoogle">4,3</span><span class="prova__de"> de 5</span></span>
-          <span class="prova__texto">em cerca de <span data-cfg="avaliacoesGoogle">101</span> avaliações no Google</span>
-        </li>
-        <li class="prova__item" data-coletado-em="2026-10-12" data-fonte="Instagram">
-          <span class="prova__numero" data-cfg="seguidoresInstagram">9 mil</span>
-          <span class="prova__texto">seguidores no Instagram</span>
-        </li>
-        <li class="prova__item">
-          <span class="prova__numero">Seg. a sáb.</span>
-          <span class="prova__texto">jantar das 18h às 23h</span>
-        </li>
-      </ul>
-      <p class="prova__nota">Números públicos consultados em <time data-cfg="coletadoEm" datetime="2026-10-12">12/10/2026</time>.</p>
-    </section>
-
-    <!-- ============================================================ A EXPERIÊNCIA -->
-    <section class="secao" id="experiencia">
-      <div class="secao__dentro">
-        <header class="cabecalho revelar">
-          <p class="sobretitulo">A experiência</p>
-          <h2>O que faz as pessoas voltarem</h2>
-          <p class="cabecalho__lead">Quem avalia a casa no Google costuma falar de três coisas: o ambiente, o frescor das peças e a atenção de quem serve. É nelas que a noite se apoia.</p>
-        </header>
-
-        <div class="experiencia">
-          <article class="bloco revelar">
-            <span class="bloco__num" aria-hidden="true">01</span>
-            <h3>Um salão para ficar</h3>
-            <p>Ambiente bonito e aconchegante, daqueles em que a conversa rende e ninguém olha o relógio.</p>
-          </article>
-          <article class="bloco revelar">
-            <span class="bloco__num" aria-hidden="true">02</span>
-            <h3>Peças frescas</h3>
-            <p>O frescor do peixe é o elogio que mais se repete nas avaliações públicas da casa, do sushi aos frutos do mar.</p>
-          </article>
-          <article class="bloco revelar">
-            <span class="bloco__num" aria-hidden="true">03</span>
-            <h3>Atendimento atento</h3>
-            <p>Garçons atenciosos, que acompanham a mesa do começo ao fim da noite.</p>
-          </article>
-          <article class="bloco revelar">
-            <span class="bloco__num" aria-hidden="true">04</span>
-            <h3>Noite de comemorar</h3>
-            <p>Aniversário, encontro ou jantar em família: avise na reserva qual é a ocasião. <span class="confirmar">[CONFIRMAR: o que a casa oferece para aniversários e grupos]</span></p>
-          </article>
-        </div>
-
-        <div class="sobre revelar">
-          <h3>Sobre a casa</h3>
-          <p><span class="confirmar">[CONFIRMAR: história da casa, ano de abertura e nome dos responsáveis]</span></p>
-        </div>
+    <!-- ============================================================ O ESSENCIAL -->
+    <section class="essencial" aria-labelledby="essencial-titulo">
+      <h2 class="so-leitor" id="essencial-titulo">O essencial</h2>
+      <div class="essencial__item" data-revelar style="--i:0">
+        <h3>Horário</h3>
+        <p>Segunda a sábado, das 18h às 23h.<br>Domingo: fechado.</p>
+      </div>
+      <div class="essencial__item" data-revelar style="--i:1">
+        <h3>Endereço</h3>
+        <address>R. Visconde de Taunay, 1174<br>Atiradores, Joinville - SC</address>
+        <a class="link" href="https://www.google.com/maps/dir/?api=1&amp;destination=R.+Visconde+de+Taunay%2C+1174+-+Atiradores%2C+Joinville+-+SC%2C+89203-062" target="_blank" rel="noopener" data-cfg-href="comoChegar" data-track="click_como_chegar" data-local="essencial">Como chegar<span class="so-leitor"> (abre o Google Maps em nova aba)</span></a>
+      </div>
+      <div class="essencial__item" data-revelar style="--i:2">
+        <h3>Reservas</h3>
+        <p>Pelo WhatsApp. Você escolhe o dia, o horário e o número de pessoas.</p>
+        <a class="link" href="#reservas" data-track="click_whatsapp" data-local="essencial">Reservar pelo WhatsApp</a>
+      </div>
+      <div class="essencial__item" data-revelar style="--i:3">
+        <h3>Valores</h3>
+        <p>Rodízio de sushi e frutos do mar. <span class="confirmar">[CONFIRMAR: valor]</span></p>
+        <a class="link" href="#valores">Ver valores</a>
       </div>
     </section>
 
     <!-- ============================================================ COMO FUNCIONA -->
-    <section class="secao secao--grafite" id="como-funciona">
-      <div class="secao__dentro">
-        <header class="cabecalho revelar">
-          <p class="sobretitulo">Como funciona o rodízio</p>
-          <h2>Três passos até a mesa</h2>
-        </header>
+    <section class="secao funciona" id="como-funciona">
+      <header class="funciona__cabeca">
+        <h2 data-revelar>Como funciona o rodízio</h2>
+        <p data-revelar style="--i:1">Você reserva pelo WhatsApp, chega e aproveita. São três passos.</p>
+      </header>
 
+      <div class="funciona__corpo">
         <ol class="passos">
-          <li class="passo revelar">
-            <span class="passo__num" aria-hidden="true">1</span>
+          <li class="passo" data-revelar style="--i:0">
             <h3>Reserve</h3>
-            <p>Escolha data, horário e número de pessoas no formulário. A mensagem abre pronta no WhatsApp: envie e aguarde a confirmação da casa.</p>
-            <p><span class="confirmar">[CONFIRMAR: política de reserva e tolerância de atraso]</span></p>
+            <p>Escolha data, horário e número de pessoas no formulário. A mensagem abre pronta no WhatsApp: envie e aguarde a confirmação da casa. <span class="confirmar">[CONFIRMAR: política de reserva e tolerância de atraso]</span></p>
           </li>
-          <li class="passo revelar">
-            <span class="passo__num" aria-hidden="true">2</span>
+          <li class="passo" data-revelar style="--i:1">
             <h3>Chegue</h3>
-            <p>R. Visconde de Taunay, 1174, no Atiradores. A casa abre às 18h, de segunda a sábado.</p>
-            <p><span class="confirmar">[CONFIRMAR: estacionamento e acessibilidade]</span></p>
+            <p>R. Visconde de Taunay, 1174, no Atiradores. A casa abre às 18h, de segunda a sábado. <span class="confirmar">[CONFIRMAR: estacionamento e acessibilidade]</span></p>
           </li>
-          <li class="passo revelar">
-            <span class="passo__num" aria-hidden="true">3</span>
+          <li class="passo" data-revelar style="--i:2">
             <h3>Aproveite</h3>
-            <p>Sushi e frutos do mar em rodízio, no seu ritmo, de segunda a sábado.</p>
-            <p><span class="confirmar">[CONFIRMAR: como o rodízio é servido, tempo de mesa e regra de desperdício]</span></p>
+            <p>Sushi e frutos do mar em rodízio, no seu ritmo, de segunda a sábado. <span class="confirmar">[CONFIRMAR: como o rodízio é servido, tempo de mesa e regra de desperdício]</span></p>
           </li>
         </ol>
+      </div>
+    </section>
 
-        <div class="valores revelar">
-          <div class="valores__bloco">
-            <h3>Valores do rodízio</h3>
-            <ul class="valores__lista">
-              <li><span>Adulto</span><span class="confirmar">[CONFIRMAR: valor]</span></li>
-              <li><span>Criança</span><span class="confirmar">[CONFIRMAR: valor e faixa de idade]</span></li>
-              <li><span>Sextas, sábados e datas especiais</span><span class="confirmar">[CONFIRMAR: valor]</span></li>
-              <li><span>Bebidas e itens à parte</span><span class="confirmar">[CONFIRMAR: o que não está incluso]</span></li>
-            </ul>
-          </div>
-          <aside class="dica">
-            <h3>Para não esperar</h3>
-            <p>Reserve com antecedência nos horários de pico. Quanto antes você combinar a mesa, maior a chance de conseguir o horário que quer.</p>
-            <p><span class="confirmar">[CONFIRMAR: dias e horários de maior movimento]</span></p>
-          </aside>
-        </div>
+    <!-- ============================================================ VALORES -->
+    <section class="valores" id="valores" aria-labelledby="valores-titulo">
+      <h2 class="valores__titulo" id="valores-titulo" data-revelar>Valores do rodízio</h2>
+      <div class="valores__campos">
+        <article class="campo-valor campo-valor--ouro" data-revelar>
+          <h3>Adulto</h3>
+          <p class="campo-valor__para">Rodízio de sushi e frutos do mar, no jantar, de segunda a sábado.</p>
+          <p class="campo-valor__preco"><span class="confirmar">[CONFIRMAR: valor]</span></p>
+        </article>
+        <article class="campo-valor campo-valor--marfim" data-revelar style="--i:1">
+          <h3>Criança</h3>
+          <p class="campo-valor__para">Para os pequenos que vêm junto com a família.</p>
+          <p class="campo-valor__preco"><span class="confirmar">[CONFIRMAR: valor e faixa de idade]</span></p>
+        </article>
+      </div>
+
+      <div class="valores__resto">
+        <dl class="valores__lista" data-revelar>
+          <div><dt>Sextas, sábados e datas especiais</dt><dd><span class="confirmar">[CONFIRMAR: valor]</span></dd></div>
+          <div><dt>Bebidas e itens à parte</dt><dd><span class="confirmar">[CONFIRMAR: o que não está incluso]</span></dd></div>
+        </dl>
+        <aside class="dica" data-revelar style="--i:1">
+          <h3>Para não esperar</h3>
+          <p>Reserve com antecedência nos horários de pico. Quanto antes você combinar a mesa, maior a chance de conseguir o horário que quer.</p>
+          <p><span class="confirmar">[CONFIRMAR: dias e horários de maior movimento]</span></p>
+        </aside>
       </div>
     </section>
 
     <!-- ============================================================ O QUE VOCÊ ENCONTRA -->
-    <section class="secao" id="cardapio">
-      <div class="secao__dentro">
-        <header class="cabecalho revelar">
-          <p class="sobretitulo">Cardápio do rodízio</p>
-          <h2>O que você encontra</h2>
-          <p class="cabecalho__lead">As categorias abaixo aguardam a lista oficial da casa. Nenhum item será publicado sem validação.</p>
-        </header>
+    <section class="secao secao--grafite cardapio" id="cardapio">
+      <figure class="cardapio__figura abre" data-revelar>
+        <div class="moldura">
+          <img class="deriva" src="assets/ilustrativas/variedade-de-sushis.jpg" width="1920" height="1280" loading="lazy" decoding="async"
+               alt="Variedade de sushis lado a lado: makis, uramakis, niguiris de camarão e gunkan, com um potinho de shoyu">
+        </div>
+        <figcaption class="nota">Foto ilustrativa.</figcaption>
+      </figure>
+
+      <div class="cardapio__texto">
+        <h2 data-revelar>Cardápio do rodízio</h2>
+        <p class="lead" data-revelar style="--i:1">As categorias abaixo aguardam a lista oficial da casa. Nenhum item será publicado sem validação.</p>
 
         <ul class="categorias">
-          <li class="categoria revelar"><h3>Sushis</h3><p><span class="confirmar">[CONFIRMAR: itens]</span></p></li>
-          <li class="categoria revelar"><h3>Sashimis</h3><p><span class="confirmar">[CONFIRMAR: itens]</span></p></li>
-          <li class="categoria revelar"><h3>Hots</h3><p><span class="confirmar">[CONFIRMAR: itens]</span></p></li>
-          <li class="categoria revelar"><h3>Temakis</h3><p><span class="confirmar">[CONFIRMAR: itens]</span></p></li>
-          <li class="categoria revelar"><h3>Frutos do mar</h3><p><span class="confirmar">[CONFIRMAR: itens]</span></p></li>
-          <li class="categoria revelar"><h3>Pratos quentes</h3><p><span class="confirmar">[CONFIRMAR: itens]</span></p></li>
-          <li class="categoria revelar"><h3>Sobremesas</h3><p><span class="confirmar">[CONFIRMAR: itens]</span></p></li>
-          <li class="categoria categoria--link revelar">
-            <h3>Prefere pedir em casa?</h3>
-            <p>O delivery tem cardápio próprio, em outra plataforma.</p>
-            <a class="link-seta" href="https://pedir.delivery/app/palaciosushi./menu" target="_blank" rel="noopener" data-cfg-href="cardapioDelivery" data-utm data-track="click_cardapio">
-              Cardápio delivery
-              <svg width="16" height="16" aria-hidden="true"><use href="#i-seta"/></svg>
-              <span class="so-leitor">(abre em nova aba)</span>
-            </a>
-          </li>
+          <li class="categoria" data-revelar style="--i:0"><h3>Sushis</h3><p><span class="confirmar">[CONFIRMAR: itens]</span></p></li>
+          <li class="categoria" data-revelar style="--i:1"><h3>Sashimis</h3><p><span class="confirmar">[CONFIRMAR: itens]</span></p></li>
+          <li class="categoria" data-revelar style="--i:2"><h3>Hots</h3><p><span class="confirmar">[CONFIRMAR: itens]</span></p></li>
+          <li class="categoria" data-revelar style="--i:3"><h3>Temakis</h3><p><span class="confirmar">[CONFIRMAR: itens]</span></p></li>
+          <li class="categoria" data-revelar style="--i:4"><h3>Frutos do mar</h3><p><span class="confirmar">[CONFIRMAR: itens]</span></p></li>
+          <li class="categoria" data-revelar style="--i:5"><h3>Pratos quentes</h3><p><span class="confirmar">[CONFIRMAR: itens]</span></p></li>
+          <li class="categoria" data-revelar style="--i:6"><h3>Sobremesas</h3><p><span class="confirmar">[CONFIRMAR: itens]</span></p></li>
         </ul>
-      </div>
-    </section>
 
-    <!-- ============================================================ GALERIA -->
-    <section class="secao secao--grafite" id="galeria">
-      <div class="secao__dentro">
-        <header class="cabecalho revelar">
-          <p class="sobretitulo">Galeria</p>
-          <h2>O salão e a mesa</h2>
-          <p class="cabecalho__lead"><span class="confirmar">[CONFIRMAR: enviar fotos próprias e autorizadas da casa]</span></p>
-        </header>
-
-        <!--
-          Cada item é um botão que abre o lightbox.
-          Com foto real: adicione data-full="assets/fotos/NOME-1600.jpg" ao botão e
-          troque o <span class="foto …"> pelo <picture> (modelo no README).
-        -->
-        <ul class="galeria">
-          <li><button class="galeria__item revelar" type="button" data-legenda="Salão principal">
-            <span class="foto foto--arco"><svg width="24" height="24" aria-hidden="true"><use href="#i-foto"/></svg><span class="foto__rotulo">FOTO: salão principal<br>1200 × 1500</span></span>
-            <span class="so-leitor">Ampliar: salão principal</span>
-          </button></li>
-          <li><button class="galeria__item revelar" type="button" data-legenda="Fachada à noite">
-            <span class="foto foto--arco"><svg width="24" height="24" aria-hidden="true"><use href="#i-foto"/></svg><span class="foto__rotulo">FOTO: fachada à noite<br>1200 × 1500</span></span>
-            <span class="so-leitor">Ampliar: fachada à noite</span>
-          </button></li>
-          <li><button class="galeria__item revelar" type="button" data-legenda="Combinado de sushis">
-            <span class="foto foto--arco"><svg width="24" height="24" aria-hidden="true"><use href="#i-foto"/></svg><span class="foto__rotulo">FOTO: combinado de sushis<br>1200 × 1500</span></span>
-            <span class="so-leitor">Ampliar: combinado de sushis</span>
-          </button></li>
-          <li><button class="galeria__item revelar" type="button" data-legenda="Sashimis">
-            <span class="foto foto--arco"><svg width="24" height="24" aria-hidden="true"><use href="#i-foto"/></svg><span class="foto__rotulo">FOTO: sashimis<br>1200 × 1500</span></span>
-            <span class="so-leitor">Ampliar: sashimis</span>
-          </button></li>
-          <li><button class="galeria__item revelar" type="button" data-legenda="Frutos do mar">
-            <span class="foto foto--arco"><svg width="24" height="24" aria-hidden="true"><use href="#i-foto"/></svg><span class="foto__rotulo">FOTO: frutos do mar<br>1200 × 1500</span></span>
-            <span class="so-leitor">Ampliar: frutos do mar</span>
-          </button></li>
-          <li><button class="galeria__item revelar" type="button" data-legenda="Mesa posta para grupo">
-            <span class="foto foto--arco"><svg width="24" height="24" aria-hidden="true"><use href="#i-foto"/></svg><span class="foto__rotulo">FOTO: mesa para grupo<br>1200 × 1500</span></span>
-            <span class="so-leitor">Ampliar: mesa posta para grupo</span>
-          </button></li>
-          <li><button class="galeria__item revelar" type="button" data-legenda="Balcão do sushiman">
-            <span class="foto foto--arco"><svg width="24" height="24" aria-hidden="true"><use href="#i-foto"/></svg><span class="foto__rotulo">FOTO: balcão do sushiman<br>1200 × 1500</span></span>
-            <span class="so-leitor">Ampliar: balcão do sushiman</span>
-          </button></li>
-          <li><button class="galeria__item revelar" type="button" data-legenda="Detalhe da decoração">
-            <span class="foto foto--arco"><svg width="24" height="24" aria-hidden="true"><use href="#i-foto"/></svg><span class="foto__rotulo">FOTO: detalhe da decoração<br>1200 × 1500</span></span>
-            <span class="so-leitor">Ampliar: detalhe da decoração</span>
-          </button></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============================================================ DEPOIMENTOS -->
-    <section class="secao" id="depoimentos">
-      <div class="secao__dentro">
-        <header class="cabecalho revelar">
-          <p class="sobretitulo">Depoimentos</p>
-          <h2>Quem já sentou à mesa</h2>
-        </header>
-
-        <div class="depoimentos__vazio revelar">
-          <p><span class="confirmar">[CONFIRMAR: inserir 3 depoimentos reais e autorizados por escrito]</span></p>
-          <p>Enquanto isso, as avaliações públicas estão no perfil da casa no Google.</p>
-        </div>
-
-        <!--
-          MODELO: copie um <li> por depoimento autorizado, remova o atributo "hidden" da lista
-          e apague o bloco .depoimentos__vazio acima. Nunca publique depoimento sem autorização.
-        -->
-        <ul class="depoimentos" hidden>
-          <li class="depoimento">
-            <blockquote><p>TEXTO DO DEPOIMENTO</p></blockquote>
-            <p class="depoimento__autor">NOME <span>· ORIGEM (ex.: avaliação no Google, mês/ano)</span></p>
-          </li>
-        </ul>
+        <p class="cardapio__delivery" data-revelar>
+          Prefere pedir em casa? O delivery tem cardápio próprio, em outra plataforma.
+          <a class="link" href="https://pedir.delivery/app/palaciosushi./menu" target="_blank" rel="noopener" data-cfg-href="cardapioDelivery" data-utm data-track="click_cardapio">Cardápio delivery<span class="so-leitor"> (abre em nova aba)</span></a>
+        </p>
       </div>
     </section>
 
     <!-- ============================================================ RESERVA -->
-    <section class="secao secao--reserva" id="reservas">
-      <div class="secao__dentro reserva">
-        <header class="cabecalho cabecalho--esq revelar">
-          <p class="sobretitulo">Reservas</p>
+    <section class="secao reserva" id="reservas">
+      <div class="cupom" data-revelar>
+        <div class="cupom__canhoto">
           <h2>Reserve sua mesa</h2>
-          <p class="cabecalho__lead">Preencha os dados e toque em enviar. O WhatsApp abre com a mensagem pronta: é só mandar. A mesa fica garantida quando a casa responder confirmando.</p>
-          <ul class="reserva__pontos">
-            <li>Segunda a sábado, das 18h às 23h</li>
-            <li>Nada é salvo nesta página: os dados vão direto para a sua conversa no WhatsApp</li>
-          </ul>
-          <p class="reserva__aviso" data-aviso-whatsapp><span class="confirmar">[CONFIRMAR: o número (47) 99220-1210 é o WhatsApp de reservas?]</span></p>
-        </header>
 
-        <form class="form revelar" id="form-reserva" novalidate>
+          <!-- O bilhete acompanha o que a pessoa preenche ao lado. -->
+          <div class="bilhete" data-bilhete aria-live="polite">
+            <p class="bilhete__mesa" data-b="pessoas">Sua mesa</p>
+            <p class="bilhete__quando"><span data-b="data">no dia que você escolher</span> <span data-b="horario">a partir das 18h</span></p>
+          </div>
+
+          <div class="cupom__rodape">
+            <p>Preencha os dados e toque em enviar. O WhatsApp abre com a mensagem pronta: é só mandar. A mesa fica garantida quando a casa responder confirmando.</p>
+            <ul class="reserva__pontos">
+              <li>Segunda a sábado, das 18h às 23h</li>
+              <li>Nada é salvo nesta página: os dados vão direto para a sua conversa no WhatsApp</li>
+            </ul>
+            <p class="reserva__aviso" data-aviso-whatsapp><span class="confirmar">[CONFIRMAR: o número (47) 99220-1210 é o WhatsApp de reservas?]</span></p>
+          </div>
+        </div>
+
+        <form class="form" id="form-reserva" novalidate>
           <div class="campo">
             <label for="f-nome">Nome</label>
             <input id="f-nome" name="nome" type="text" autocomplete="name" required maxlength="80" aria-describedby="e-nome">
@@ -435,10 +307,7 @@
             <p class="campo__dica" id="d-obs">Aniversário, cadeirinha, restrição alimentar, preferência de mesa.</p>
           </div>
 
-          <button class="botao botao--ouro botao--cheio" type="submit">
-            <svg width="20" height="20" aria-hidden="true"><use href="#i-chat"/></svg>
-            Enviar pelo WhatsApp
-          </button>
+          <button class="botao botao--noite botao--cheio" type="submit">Enviar pelo WhatsApp</button>
 
           <div class="form__status" id="reserva-status" role="status" aria-live="polite"></div>
 
@@ -452,113 +321,217 @@
     </section>
 
     <!-- ============================================================ LOCALIZAÇÃO -->
-    <section class="secao secao--grafite" id="localizacao">
-      <div class="secao__dentro">
-        <header class="cabecalho revelar">
-          <p class="sobretitulo">Localização e horários</p>
-          <h2>No Atiradores, em Joinville</h2>
-        </header>
+    <section class="secao secao--grafite local" id="localizacao">
+      <div class="local__info">
+        <h2 data-revelar>Endereço e horários</h2>
 
-        <div class="local">
-          <div class="local__info revelar">
+        <div class="local__blocos">
+          <div data-revelar style="--i:1">
             <h3>Endereço</h3>
             <address>
               R. Visconde de Taunay, 1174<br>
               Atiradores, Joinville - SC<br>
               CEP 89203-062
             </address>
+          </div>
 
+          <div data-revelar style="--i:2">
             <h3>Horários</h3>
             <dl class="horarios">
               <div><dt>Segunda a sábado</dt><dd>18h às 23h</dd></div>
               <div><dt>Domingo</dt><dd>Fechado</dd></div>
             </dl>
+          </div>
 
+          <div data-revelar style="--i:3">
             <h3>Bom saber</h3>
             <ul class="local__apoio">
               <li>Estacionamento: <span class="confirmar">[CONFIRMAR]</span></li>
               <li>Acessibilidade: <span class="confirmar">[CONFIRMAR]</span></li>
             </ul>
-
-            <a class="botao botao--linha" href="https://www.google.com/maps/dir/?api=1&amp;destination=R.+Visconde+de+Taunay%2C+1174+-+Atiradores%2C+Joinville+-+SC%2C+89203-062" target="_blank" rel="noopener" data-cfg-href="comoChegar" data-track="click_como_chegar" data-local="localizacao">
-              <svg width="20" height="20" aria-hidden="true"><use href="#i-pin"/></svg>
-              Como chegar
-              <span class="so-leitor">(abre o Google Maps em nova aba)</span>
-            </a>
-          </div>
-
-          <div class="local__mapa revelar">
-            <iframe
-              title="Mapa: Palácio Sushi Experience, R. Visconde de Taunay, 1174, Joinville"
-              src="https://www.google.com/maps?q=R.+Visconde+de+Taunay%2C+1174+-+Atiradores%2C+Joinville+-+SC%2C+89203-062&amp;output=embed"
-              width="800" height="600" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
           </div>
         </div>
+
+        <a class="botao" data-revelar style="--i:4" href="https://www.google.com/maps/dir/?api=1&amp;destination=R.+Visconde+de+Taunay%2C+1174+-+Atiradores%2C+Joinville+-+SC%2C+89203-062" target="_blank" rel="noopener" data-cfg-href="comoChegar" data-track="click_como_chegar" data-local="localizacao">
+          Como chegar
+          <span class="so-leitor">(abre o Google Maps em nova aba)</span>
+        </a>
+      </div>
+
+      <div class="local__mapa" data-revelar>
+        <iframe
+          title="Mapa: Palácio Sushi Experience, R. Visconde de Taunay, 1174, Joinville"
+          src="https://www.google.com/maps?q=R.+Visconde+de+Taunay%2C+1174+-+Atiradores%2C+Joinville+-+SC%2C+89203-062&amp;output=embed"
+          width="800" height="600" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- ============================================================ A EXPERIÊNCIA -->
+    <section class="secao experiencia" id="experiencia">
+      <!-- Números editáveis em config.js (bloco "prova"). data-coletado-em = data da coleta. -->
+      <div class="arcada">
+        <div class="arcada__cabeca" data-revelar>
+          <h2>O que faz as pessoas voltarem</h2>
+          <p class="nota">Números públicos consultados em <time data-cfg="coletadoEm" datetime="2026-10-12">12/10/2026</time>.</p>
+        </div>
+        <ul class="arcada__lista">
+          <li class="arco arco--ouro" data-revelar style="--i:0" data-coletado-em="2026-10-12" data-fonte="Google Maps">
+            <span class="arco__numero"><span data-cfg="notaGoogle">4,3</span> de 5</span>
+            <span class="arco__texto">em cerca de <span data-cfg="avaliacoesGoogle">101</span> avaliações no Google</span>
+          </li>
+          <li class="arco arco--marfim" data-revelar style="--i:1" data-coletado-em="2026-10-12" data-fonte="Instagram">
+            <span class="arco__numero" data-cfg="seguidoresInstagram">9 mil</span>
+            <span class="arco__texto">seguidores no Instagram</span>
+          </li>
+          <li class="arco arco--grafite" data-revelar style="--i:2">
+            <span class="arco__numero">18h–23h</span>
+            <span class="arco__texto">jantar de segunda a sábado</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="motivos">
+        <article class="motivo" data-revelar style="--i:0">
+          <h3>Um salão para ficar</h3>
+          <p>Ambiente bonito e aconchegante, daqueles em que a conversa rende e ninguém olha o relógio.</p>
+        </article>
+        <article class="motivo" data-revelar style="--i:1">
+          <h3>Peças frescas</h3>
+          <p>O frescor do peixe é o elogio que mais se repete nas avaliações públicas da casa, do sushi aos frutos do mar.</p>
+        </article>
+        <article class="motivo" data-revelar style="--i:2">
+          <h3>Atendimento atento</h3>
+          <p>Garçons atenciosos, que acompanham a mesa do começo ao fim da noite.</p>
+        </article>
+        <article class="motivo" data-revelar style="--i:3">
+          <h3>Noite de comemorar</h3>
+          <p>Aniversário, encontro ou jantar em família: avise na reserva qual é a ocasião. <span class="confirmar">[CONFIRMAR: o que a casa oferece para aniversários e grupos]</span></p>
+        </article>
+        <article class="motivo" data-revelar style="--i:4">
+          <h3>Sobre a casa</h3>
+          <p><span class="confirmar">[CONFIRMAR: história da casa, ano de abertura e nome dos responsáveis]</span></p>
+        </article>
+        <article class="motivo" id="depoimentos" data-revelar style="--i:5">
+          <h3>Quem já sentou à mesa</h3>
+          <div class="depoimentos__vazio">
+            <p><span class="confirmar">[CONFIRMAR: inserir 3 depoimentos reais e autorizados por escrito]</span></p>
+            <p>Enquanto isso, as avaliações públicas estão no perfil da casa no Google.</p>
+          </div>
+          <!--
+            MODELO: copie um <li> por depoimento autorizado, remova o atributo "hidden" da lista
+            e apague o bloco .depoimentos__vazio acima. Nunca publique depoimento sem autorização.
+          -->
+          <ul class="depoimentos" hidden>
+            <li class="depoimento">
+              <blockquote><p>TEXTO DO DEPOIMENTO</p></blockquote>
+              <p class="depoimento__autor">NOME <span>· ORIGEM (ex.: avaliação no Google, mês/ano)</span></p>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================================================ GALERIA -->
+    <section class="secao secao--grafite galeria" id="galeria">
+      <!--
+        UMA MOLDURA, o conteúdo troca. Tocar na moldura passa para a próxima imagem.
+        Hoje são fotos ilustrativas, de licença livre. Com as fotos da casa, troque cada <img>
+        e a respectiva legenda em data-legenda (modelo no README).
+      -->
+      <div class="galeria__quadro" data-revelar>
+        <button class="moldura moldura--troca" type="button" data-galeria aria-describedby="galeria-legenda">
+          <img class="ativa" src="assets/ilustrativas/nigiri-de-salmao.jpg" width="1280" height="853" loading="lazy" decoding="async"
+               alt="Niguiri de salmão sobre uma pedra escura"
+               data-legenda="Foto ilustrativa: niguiri de salmão.">
+          <img src="assets/ilustrativas/nigiris-e-hashi.jpg" width="1280" height="853" loading="lazy" decoding="async"
+               alt="Três niguiris, de camarão, de omelete e de salmão, ao lado de um par de hashis"
+               data-legenda="Foto ilustrativa: niguiris e hashi.">
+          <img src="assets/ilustrativas/maki-shoyu-e-gengibre.jpg" width="1280" height="854" loading="lazy" decoding="async"
+               alt="Um maki ao lado de potinhos de gengibre e de shoyu, com hashis apoiados"
+               data-legenda="Foto ilustrativa: maki, shoyu e gengibre.">
+          <img src="assets/ilustrativas/combinado-atum-e-salmao.jpg" width="1280" height="853" loading="lazy" decoding="async"
+               alt="Combinado com makis de atum e niguiris de salmão em um prato escuro"
+               data-legenda="Foto ilustrativa: combinado de atum e salmão.">
+          <img src="assets/ilustrativas/salmao-macaricado.jpg" width="1280" height="853" loading="lazy" decoding="async"
+               alt="Sushis prensados de salmão maçaricado em uma travessa de pedra"
+               data-legenda="Foto ilustrativa: salmão maçaricado.">
+          <img src="assets/ilustrativas/sashimi-misto.jpg" width="1280" height="964" loading="lazy" decoding="async"
+               alt="Prato de sashimis variados, com salmão, atum e camarão"
+               data-legenda="Foto ilustrativa: sashimi misto.">
+          <span class="so-leitor">Passar para a próxima imagem</span>
+        </button>
+        <p class="nota" id="galeria-legenda" data-galeria-legenda>Foto ilustrativa: niguiri de salmão.</p>
+        <p class="galeria__dica">Toque na imagem para ver a próxima.</p>
+      </div>
+
+      <div class="galeria__texto">
+        <h2 data-revelar>O salão e a mesa</h2>
+        <p class="lead" data-revelar style="--i:1">As fotos desta página são ilustrativas. As fotos do salão e dos pratos da casa entram aqui.</p>
+        <p data-revelar style="--i:2"><span class="confirmar">[CONFIRMAR: enviar fotos próprias e autorizadas da casa]</span></p>
       </div>
     </section>
 
     <!-- ============================================================ FAQ -->
-    <section class="secao" id="faq">
-      <div class="secao__dentro secao__dentro--estreita">
-        <header class="cabecalho revelar">
-          <p class="sobretitulo">Perguntas frequentes</p>
-          <h2>Antes de reservar</h2>
-        </header>
+    <section class="secao faq" id="faq">
+      <h2 data-revelar>Perguntas frequentes</h2>
 
-        <div class="faq revelar">
-          <details>
-            <summary>Preciso reservar?</summary>
-            <div class="faq__resposta">
-              <p>Recomendamos, principalmente nos horários de pico. A reserva é feita pelo formulário desta página, que abre o WhatsApp com a mensagem pronta.</p>
-              <p><span class="confirmar">[CONFIRMAR: política de reserva e tolerância de atraso]</span></p>
-            </div>
-          </details>
-          <details>
-            <summary>Quanto custa o rodízio?</summary>
-            <div class="faq__resposta"><p><span class="confirmar">[CONFIRMAR: valores por pessoa, por dia da semana e o que é cobrado à parte]</span></p></div>
-          </details>
-          <details>
-            <summary>Criança paga?</summary>
-            <div class="faq__resposta"><p><span class="confirmar">[CONFIRMAR: valor e faixa de idade para crianças]</span></p></div>
-          </details>
-          <details>
-            <summary>Posso comemorar aniversário ou levar um grupo?</summary>
-            <div class="faq__resposta">
-              <p>Conte a ocasião e o tamanho do grupo no campo de observações da reserva.</p>
-              <p><span class="confirmar">[CONFIRMAR: condições para aniversários, grupos e eventos]</span></p>
-            </div>
-          </details>
-          <details>
-            <summary>Tenho restrição alimentar. E quem não come peixe cru?</summary>
-            <div class="faq__resposta">
-              <p>Avise na reserva para a equipe se preparar.</p>
-              <p><span class="confirmar">[CONFIRMAR: opções sem peixe cru, vegetarianas e cuidados com alergias]</span></p>
-            </div>
-          </details>
-          <details>
-            <summary>Existe tempo máximo de mesa?</summary>
-            <div class="faq__resposta"><p><span class="confirmar">[CONFIRMAR: tempo de mesa e regra de desperdício]</span></p></div>
-          </details>
-          <details>
-            <summary>Tem estacionamento?</summary>
-            <div class="faq__resposta"><p><span class="confirmar">[CONFIRMAR: estacionamento próprio, conveniado ou na rua]</span></p></div>
-          </details>
-          <details>
-            <summary>Quais formas de pagamento são aceitas?</summary>
-            <div class="faq__resposta"><p><span class="confirmar">[CONFIRMAR: formas de pagamento]</span></p></div>
-          </details>
-        </div>
+      <!-- Fichas de arquivo: uma aberta por vez (atributo name). -->
+      <div class="fichas" data-revelar style="--i:1">
+        <details class="ficha" name="faq" open style="--n:0">
+          <summary><span class="ficha__aba">Reserva</span><span class="ficha__pergunta">Preciso reservar?</span></summary>
+          <div class="ficha__resposta">
+            <p>Recomendamos, principalmente nos horários de pico. A reserva é feita pelo formulário desta página, que abre o WhatsApp com a mensagem pronta.</p>
+            <p><span class="confirmar">[CONFIRMAR: política de reserva e tolerância de atraso]</span></p>
+          </div>
+        </details>
+        <details class="ficha" name="faq" style="--n:1">
+          <summary><span class="ficha__aba">Preço</span><span class="ficha__pergunta">Quanto custa o rodízio?</span></summary>
+          <div class="ficha__resposta"><p><span class="confirmar">[CONFIRMAR: valores por pessoa, por dia da semana e o que é cobrado à parte]</span></p></div>
+        </details>
+        <details class="ficha" name="faq" style="--n:2">
+          <summary><span class="ficha__aba">Crianças</span><span class="ficha__pergunta">Criança paga?</span></summary>
+          <div class="ficha__resposta"><p><span class="confirmar">[CONFIRMAR: valor e faixa de idade para crianças]</span></p></div>
+        </details>
+        <details class="ficha" name="faq" style="--n:3">
+          <summary><span class="ficha__aba">Grupos</span><span class="ficha__pergunta">Posso comemorar aniversário ou levar um grupo?</span></summary>
+          <div class="ficha__resposta">
+            <p>Conte a ocasião e o tamanho do grupo no campo de observações da reserva.</p>
+            <p><span class="confirmar">[CONFIRMAR: condições para aniversários, grupos e eventos]</span></p>
+          </div>
+        </details>
+        <details class="ficha" name="faq" style="--n:4">
+          <summary><span class="ficha__aba">Restrições</span><span class="ficha__pergunta">Tenho restrição alimentar. E quem não come peixe cru?</span></summary>
+          <div class="ficha__resposta">
+            <p>Avise na reserva para a equipe se preparar.</p>
+            <p><span class="confirmar">[CONFIRMAR: opções sem peixe cru, vegetarianas e cuidados com alergias]</span></p>
+          </div>
+        </details>
+        <details class="ficha" name="faq" style="--n:5">
+          <summary><span class="ficha__aba">Tempo</span><span class="ficha__pergunta">Existe tempo máximo de mesa?</span></summary>
+          <div class="ficha__resposta"><p><span class="confirmar">[CONFIRMAR: tempo de mesa e regra de desperdício]</span></p></div>
+        </details>
+        <details class="ficha" name="faq" style="--n:6">
+          <summary><span class="ficha__aba">Carro</span><span class="ficha__pergunta">Tem estacionamento?</span></summary>
+          <div class="ficha__resposta"><p><span class="confirmar">[CONFIRMAR: estacionamento próprio, conveniado ou na rua]</span></p></div>
+        </details>
+        <details class="ficha" name="faq" style="--n:7">
+          <summary><span class="ficha__aba">Pagamento</span><span class="ficha__pergunta">Quais formas de pagamento são aceitas?</span></summary>
+          <div class="ficha__resposta"><p><span class="confirmar">[CONFIRMAR: formas de pagamento]</span></p></div>
+        </details>
       </div>
     </section>
 
     <!-- ============================================================ CHAMADA FINAL -->
-    <section class="final">
-      <svg class="final__marca" width="56" height="56" aria-hidden="true"><use href="#marca"/></svg>
-      <h2>Sua mesa, na noite que você escolher.</h2>
-      <a class="botao botao--ouro" href="#reservas" data-track="click_whatsapp" data-local="final">
-        <svg width="20" height="20" aria-hidden="true"><use href="#i-chat"/></svg>
-        Reservar pelo WhatsApp
-      </a>
+    <section class="final" aria-labelledby="final-titulo">
+      <div class="final__arco final__arco--gravura" data-revelar style="--i:0">
+        <img src="assets/ilustrativas/nigiris-e-hashi.jpg" width="1280" height="853" alt="" loading="lazy" decoding="async">
+      </div>
+      <div class="final__arco final__arco--ouro" data-revelar style="--i:1">
+        <h2 id="final-titulo">Sua mesa, na noite que você escolher.</h2>
+        <p>Segunda a sábado, das 18h às 23h, no Atiradores.</p>
+        <a class="botao botao--noite" href="#reservas" data-track="click_whatsapp" data-local="final">Reservar pelo WhatsApp</a>
+      </div>
+      <div class="final__arco final__arco--marfim" data-revelar style="--i:2"></div>
     </section>
   </main>
 
@@ -566,71 +539,44 @@
   <footer class="rodape">
     <div class="rodape__dentro">
       <div class="rodape__marca">
-        <div class="logo logo--rodape">
-          <svg class="logo__marca" width="40" height="40" aria-hidden="true"><use href="#marca"/></svg>
-          <span class="logo__texto">
-            <span class="logo__nome">Palácio</span>
-            <span class="logo__sub">Sushi Experience<sup>®</sup></span>
-          </span>
-        </div>
+        <img src="assets/logo-palacio.webp" width="240" height="240" loading="lazy" decoding="async" alt="Palácio Sushi Experience">
         <p>Rodízio de sushi e frutos do mar em Joinville.</p>
       </div>
 
-      <div>
+      <div class="rodape__coluna">
         <h2 class="rodape__titulo">Endereço</h2>
         <address>R. Visconde de Taunay, 1174<br>Atiradores, Joinville - SC<br>CEP 89203-062</address>
+        <a href="https://www.google.com/maps/dir/?api=1&amp;destination=R.+Visconde+de+Taunay%2C+1174+-+Atiradores%2C+Joinville+-+SC%2C+89203-062" target="_blank" rel="noopener" data-cfg-href="comoChegar" data-track="click_como_chegar" data-local="rodape">Como chegar<span class="so-leitor"> (abre o Google Maps em nova aba)</span></a>
       </div>
 
-      <div>
+      <div class="rodape__coluna">
         <h2 class="rodape__titulo">Horários</h2>
-        <p>Segunda a sábado, 18h às 23h<br>Domingo: fechado</p>
+        <p>Segunda a sábado: 18h às 23h<br>Domingo: fechado</p>
       </div>
 
-      <div>
+      <div class="rodape__coluna">
         <h2 class="rodape__titulo">Contato</h2>
         <ul class="rodape__links">
           <li><a href="https://wa.me/5547992201210" target="_blank" rel="noopener" data-wa data-track="click_whatsapp" data-local="rodape">WhatsApp (47) 99220-1210<span class="so-leitor"> (abre em nova aba)</span></a></li>
-          <li><a href="https://www.instagram.com/palacio_sushi_experience/" target="_blank" rel="noopener" data-cfg-href="instagram">Instagram @palacio_sushi_experience<span class="so-leitor"> (abre em nova aba)</span></a></li>
+          <li><a href="https://www.instagram.com/palacio_sushi_experience/" target="_blank" rel="noopener" data-cfg-href="instagram">Instagram<span class="so-leitor"> @palacio_sushi_experience (abre em nova aba)</span></a></li>
           <li><a href="https://pedir.delivery/app/palaciosushi./menu" target="_blank" rel="noopener" data-cfg-href="cardapioDelivery" data-utm data-track="click_cardapio">Cardápio delivery<span class="so-leitor"> (abre em nova aba)</span></a></li>
         </ul>
       </div>
     </div>
 
     <div class="rodape__base">
-      <p class="rodape__demo"><strong>Versão de demonstração.</strong> Página de proposta, ainda não aprovada pelo restaurante. Logo provisório e textos entre colchetes aguardam confirmação.</p>
+      <p class="rodape__demo"><strong>Versão de demonstração.</strong> Página de proposta, ainda não aprovada pelo restaurante. As fotos são ilustrativas e os textos entre colchetes aguardam confirmação.</p>
+      <!-- Apagar esta linha quando as fotos ilustrativas forem trocadas pelas fotos da casa. Fontes em assets/ilustrativas/credits.json -->
+      <p class="rodape__creditos">Fotos ilustrativas, via Wikimedia Commons: Yuri Samoilov (<a href="https://commons.wikimedia.org/w/index.php?curid=71367007" target="_blank" rel="noopener">foto</a>; <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener">CC BY 3.0</a>); Tim Reckmann (<a href="https://commons.wikimedia.org/w/index.php?curid=83154615" target="_blank" rel="noopener">foto 1</a>, <a href="https://commons.wikimedia.org/wiki/File:Sushi_(14931027625).jpg" target="_blank" rel="noopener">foto 2</a>, <a href="https://commons.wikimedia.org/wiki/File:Sushi_(26545008856).jpg" target="_blank" rel="noopener">foto 3</a>, <a href="https://commons.wikimedia.org/wiki/File:Sushi_(26478755502).jpg" target="_blank" rel="noopener">foto 4</a>; <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>); Geoff Peters (<a href="https://commons.wikimedia.org/w/index.php?curid=80213119" target="_blank" rel="noopener">foto</a>; <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>); City Foodsters (<a href="https://commons.wikimedia.org/wiki/File:Yaki_Salmon_(Seared_Salmon)_Pressed_Sushi_(9865132724).jpg" target="_blank" rel="noopener">foto</a>; <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>); Andy Li (<a href="https://commons.wikimedia.org/wiki/File:Mixed_Sashimi_-_Taro_2025-10-24.jpg" target="_blank" rel="noopener">foto</a>; <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">CC0</a>).</p>
       <p class="rodape__credito">Desenvolvido por <span data-cfg="creditoDesenvolvedor">Vinicius Werner</span></p>
     </div>
   </footer>
 
   <!-- ============================================================ BARRA FIXA (CELULAR) -->
   <div class="barra" id="barra">
-    <a class="botao botao--ouro" href="#reservas" data-track="click_whatsapp" data-local="barra">
-      <svg width="18" height="18" aria-hidden="true"><use href="#i-chat"/></svg>
-      Reservar no WhatsApp
-    </a>
-    <a class="botao botao--linha" href="https://www.google.com/maps/dir/?api=1&amp;destination=R.+Visconde+de+Taunay%2C+1174+-+Atiradores%2C+Joinville+-+SC%2C+89203-062" target="_blank" rel="noopener" data-cfg-href="comoChegar" data-track="click_como_chegar" data-local="barra">
-      <svg width="18" height="18" aria-hidden="true"><use href="#i-pin"/></svg>
-      Como chegar
-      <span class="so-leitor">(abre em nova aba)</span>
-    </a>
+    <a class="botao" href="#reservas" data-track="click_whatsapp" data-local="barra">Reservar pelo WhatsApp</a>
+    <a class="link" href="https://www.google.com/maps/dir/?api=1&amp;destination=R.+Visconde+de+Taunay%2C+1174+-+Atiradores%2C+Joinville+-+SC%2C+89203-062" target="_blank" rel="noopener" data-cfg-href="comoChegar" data-track="click_como_chegar" data-local="barra">Como chegar<span class="so-leitor"> (abre em nova aba)</span></a>
   </div>
-
-  <!-- ============================================================ LIGHTBOX -->
-  <dialog class="lightbox" id="lightbox" aria-label="Foto ampliada">
-    <button class="lightbox__fechar" type="button" aria-label="Fechar">
-      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    </button>
-    <button class="lightbox__nav lightbox__nav--ant" type="button" aria-label="Foto anterior">
-      <svg width="22" height="22" aria-hidden="true"><use href="#i-seta"/></svg>
-    </button>
-    <figure class="lightbox__figura">
-      <div class="lightbox__midia"></div>
-      <figcaption class="lightbox__legenda" aria-live="polite"></figcaption>
-    </figure>
-    <button class="lightbox__nav lightbox__nav--prox" type="button" aria-label="Próxima foto">
-      <svg width="22" height="22" aria-hidden="true"><use href="#i-seta"/></svg>
-    </button>
-  </dialog>
 
   <script src="config.js" defer></script>
   <script src="main.js" defer></script>

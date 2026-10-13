@@ -30,6 +30,9 @@ window.PALACIO_CONFIG = {
   // ---------------------------------------------------------------- Reservas
   // 0 = domingo ... 6 = sábado. Verificado no Google: segunda a sábado.
   diasAbertos: [1, 2, 3, 4, 5, 6],
+  // Horário da casa (Google, 12/10/2026). Alimenta o aviso "Aberto agora / Abre hoje às 18h" do topo.
+  abre: "18:00",
+  fecha: "23:00",
   primeiroHorario: "18:00",
   // [CONFIRMAR] último horário em que a casa aceita reserva (a casa fecha às 23h).
   ultimoHorario: "22:30",
