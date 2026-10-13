@@ -1,0 +1,9 @@
+# VERSÃO DE DEMONSTRAÇÃO: bloqueia todos os buscadores.
+User-agent: *
+Disallow: /
+
+# GO-LIVE (somente após aprovação do cliente): apague as duas linhas acima
+# e ative as linhas abaixo, trocando o domínio.
+# User-agent: *
+# Allow: /
+# Sitemap: https://SEU-DOMINIO.com.br/sitemap.xml
